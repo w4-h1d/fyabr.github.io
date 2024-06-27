@@ -1,11 +1,13 @@
-/* * {
+/** {
     margin: 0;
     padding: 0;
+    color: whitesmoke;
 }
 
 body {
     background-color: #12181c;
-    color: white;
+    color: whitesmoke;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 iframe {
@@ -18,10 +20,42 @@ iframe {
     background-image: url("images/bg.png");*
     background-size: auto;
     border: none;
+    back
 }
 
 h1 {
     font-size: 4rem;
-    padding: 25px;
+    padding: 5rem;
     color: white;
+} 
+
+/*header nav li {
+    display: inline-block;
+    padding: 1rem;
+    font-size: 1.25rem;
+}
+
+nav ul {
+    padding-left: 50rem;
+}
+
+header img {
+    padding: 1rem;
+    padding-left: 5rem;
+    display: inline-block;
+    height: 1.5rem;
+    float: left;
+}
+
+header {
+    background-color: #12181c;
+    display: block;
+    height: 10vh;
+}
+
+a {
+    text-decoration: none;
+    font-weight: lighter;
 }*/
+
+

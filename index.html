@@ -1,85 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="FYABR, Investing, Cryptocurrency, Investment Firm">
-    <meta name="description" content="FYABR Investment Firm">
+    <meta name="description" content="The Official Website of FYABR Investment Firm">
     <meta name="author" content="Fahim Abu Bakkar">
     <title>FYABR Inc.</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <base href="" target="_top">
-  </head>
+</head>
 
-    <body>
-        <header>
-            <a href="index.html"><img src="images/logo.png" alt="fyabr logo"></a>
+<body>
+    <header>
+        <a href="/"><img src="/images/logo.png" alt="fyabr logo" title="FYABR Inc."></a>
 
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index.html#about">About Us</a></li>
-                    <li><a href="team.html">Our Team</a></li>
-                    <li><a href="affiliates.html">Affiliates</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="index.html#contact_form">Get In Touch</a></li>
-                </ul>
-            </nav>
-        </header>
+        <nav aria-label="primary navigation">
+            <ul>
+                <li><a href="/#about">About Us</a></li>
+                <li><a href="/team">Our Team</a></li>
+                <li><a href="/affiliates">Affiliates</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/#contact_form">Get In Touch</a></li>
+            </ul>
+        </nav>
+    </header>
 
 
-        <main>
-            <section id="hero" class="center">
+    <main>
+        <section>
+            <div id="hero" class="center">
                 <h1>Your Gateway to Digital Wealth.</h1>
+
                 <h2>FYABR is an investment firm specializing in cryptocurrency trading.</h2>
-            </section>
-
+            </div>
             <p>The future of money is expected to be heavily influenced by technology. Predictions include the rise of cashless societies, the growth of cryptocurrencies, the continued adoption of digital currencies, and the potential offering of a Central Bank Digital Currency by governments.</p>
+        </section>
 
-            <h2 id="about">About Us</h2>
+        <section id="about">
+            <h2>About Us</h2>
             <p>Founded in 2022, FYABR is a privately held firm. Our founders, Fahim Abu Bakkar Siddique and Najmul Huda Wahid, lead a team of 33 employees. In 2024, our revenue reached 70,000 USD.</p>
 
             <h2>Our Mission</h2>
             <p>Our mission is to trade on crypto. We trade on cryptocurrencies in different ways. We have an experienced team and we encourage others to learn trading and get a good rate of return. Our starting was tenable, and we are just past the first step of our success. Now we have many experienced traders in our team. We have a general section for beginners and a prime section for experienced traders.</p>
+        </section>
 
-            <iframe src="https://coin360.com/widget/map?utm_source=embed_map" title="Coin360.com: Cryptocurrency Market State" style="width:100vw;height:30vh;"></iframe>
+        <iframe src="https://coin360.com/widget/map?utm_source=embed_map" title="Coin360.com: Cryptocurrency Market State"></iframe>
 
-            <h3 id="contact_form">Get In Touch</h3>
+        <section id="contact_form">
+            <h3>Get In Touch</h3>
             <form action="https://formspree.io/f/xjkbbyqd" method="POST">
-                <label for="name">Full Name</label><br>
-                <input type="text" id="name" name="Full Name" placeholder="Name" required><br>
-                <label for="email">Email Address</label><br>
-                <input type="email" id="email" name="Email Address" placeholder="you@gmail.com" required><br>
-                <label for="telephone">Phone Number</label><br>
-                <input type="tel" id="telephone" name="Phone Number" placeholder="+968 9900 8008"><br>
-                <label for="gender">Gender</label>
-                <select id="gender" name="Gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                </select><br>
-                <label for="message">Message</label><br>
-                <textarea id="message" name="Message" placeholder="Your Message"></textarea><br>
-                <input type="submit" value="Send">
-                <input type="reset" value="Clear">
+                <fieldset>
+                    <legend>Send Us A Message</legend>
+                    <p>
+                        <label for="name">Full Name</label><br>
+                        <input type="text" id="name" name="Full Name" placeholder="Name" required>
+                    </p>
+                    <p>
+                        <label for="email">Email Address</label><br>
+                        <input type="email" id="email" name="Email Address" placeholder="you@gmail.com" required>
+                    </p>
+                    <p>
+                        <label for="telephone">Phone Number</label><br>
+                        <input type="tel" id="telephone" name="Phone Number" placeholder="+968 9900 8008">
+                    </p>
+                    <p>
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="Gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="message">Message</label><br>
+                        <textarea id="message" name="Message" cols="30" rows="10" placeholder="Your Message"></textarea>
+                    </p>
+                </fieldset>
+                <p>
+                    <button type="submit">Send</button>
+                    <button type="reset">Clear</button>
+                </p>
             </form>
+        </section>
 
-            <a href="#">Back to the Top</a>
-            <hr>
-        </main>
+        <p><a href="#">Back to Top</a></p>
+    </main>
 
-        <footer>
+    <hr>
+
+    <footer>
+        <nav aria-label="footer navigation">
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#about">About Us</a></li>
-                <li><a href="team.html">Our Team</a></li>
-                <li><a href="affiliates.html">Affiliates</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="index.html#contact_form">Get In Touch</a></li>
+                <li><a href="/#about">About Us</a></li>
+                <li><a href="/team">Our Team</a></li>
+                <li><a href="/affiliates">Affiliates</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
+        </nav>
 
-            <p>&#169; 2024 FYABR Inc. All Rights Reserved.</p>
+        <p>&copy; 2024 FYABR Inc. All Rights Reserved.</p>
 
-            <a>Credits</a>
-        </footer>
-    </body>
+        <p><a href="/credits">Credits</a></p>
+    </footer>
+</body>
+
 </html>
