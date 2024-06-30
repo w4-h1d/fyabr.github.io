@@ -1,61 +1,112 @@
-/** {
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {    
     margin: 0;
     padding: 0;
-    color: whitesmoke;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #12181c;
-    color: whitesmoke;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-
-iframe {
-    border: none;
-}
-
-#hero {
-    text-align: center;
-    padding: 200px 0;
-    background-image: url("images/bg.png");*
-    background-size: auto;
-    border: none;
-    back
-}
-
-h1 {
-    font-size: 4rem;
-    padding: 5rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: #222;
     color: white;
-} 
-
-/*header nav li {
-    display: inline-block;
-    padding: 1rem;
-    font-size: 1.25rem;
-}
-
-nav ul {
-    padding-left: 50rem;
-}
-
-header img {
-    padding: 1rem;
-    padding-left: 5rem;
-    display: inline-block;
-    height: 1.5rem;
-    float: left;
+    line-height: 1.4;
 }
 
 header {
-    background-color: #12181c;
-    display: block;
-    height: 10vh;
+    background-color: #111;
+    padding: 0.5rem;
 }
 
-a {
+a, a:visited {
     text-decoration: none;
-    font-weight: lighter;
-}*/
+    color: white;
+}
+
+a:hover, a:focus {
+    color: hsla(0, 0%, 100%, 0.8);
+}
+
+header nav ul {
+    text-align: right;
+}
+
+#cta a {
+    display: block;
+}
+
+#cta {
+    background-color: rgb(119, 23, 23);
+    border-radius: 5px;
+}
+
+#cta:hover, #cta a:hover {
+    background-color: rgb(150, 17, 17);
+    color: white;
+}
+
+#hero {
+    background-image: url('images/bg.png');
+    height: 80vh;
+    text-align: center;
+}
+
+h1 {
+    padding: 8%;
+    font-size: 4rem;
+}
+
+#hero h2 {
+    padding: 5%;
+    font-size: 2rem;
+}
+
+#hero p {
+    text-align: left;
+    margin: 1rem;
+}
+
+footer {
+    text-align: center;
+    background-color: #111;
+    padding: 2rem;
+}
+
+footer p {
+    margin: 2em auto 0;
+}
+
+
+nav li {
+    display: inline-block;
+    padding: 1rem;
+}
+
+header img {
+    height: 25px;
+    width: 100px;
+    float: left;
+    margin: 0.9em 3em;
+}
+
+header nav {
+    padding-inline: 3rem;
+}
+
+article {
+    margin: 2rem 0.5rem;
+}
+
+iframe {
+    width: 100%;
+    height: 40vh;
+    border: none;
+    margin: 2rem 0;
+}
+
 
 
