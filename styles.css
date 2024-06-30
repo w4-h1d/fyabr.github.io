@@ -1,4 +1,4 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {    
     margin: 0;
@@ -14,7 +14,7 @@ body {
     font-family: 'Roboto', sans-serif;
     background-color: #222;
     color: white;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 header {
@@ -35,22 +35,26 @@ header nav ul {
     text-align: right;
 }
 
-#cta a {
-    display: block;
-}
 
 #cta {
-    background-color: rgb(119, 23, 23);
+    
+    background: linear-gradient(to right, #bb8d37, #c89b50, #ebb875);
+    padding: 1rem;
     border-radius: 5px;
+    color: #222111;
+    font-weight: 600;
 }
 
 #cta:hover, #cta a:hover {
-    background-color: rgb(150, 17, 17);
-    color: white;
+    background: linear-gradient(to right, #d49e38, #c99a49, #dfa65b);
+    color: #111;
+
 }
 
 #hero {
-    background-image: url('images/bg.png');
+    background-image: url('images/bg3.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 80vh;
     text-align: center;
 }
@@ -65,9 +69,9 @@ h1 {
     font-size: 2rem;
 }
 
-#hero p {
-    text-align: left;
-    margin: 1rem;
+#about {
+    background-image: linear-gradient(#090401, #271405);
+    padding-bottom: 2rem;
 }
 
 footer {
@@ -97,15 +101,23 @@ header nav {
     padding-inline: 3rem;
 }
 
+
 article {
-    margin: 2rem 0.5rem;
+    padding: 1rem 2rem;
 }
+
+.article_style {
+    margin: 2rem 1rem 0;
+    background-color: rgba(17, 17, 17, 0.5);
+    padding: 1.5em;
+    border-radius: 10px;
+}
+
 
 iframe {
     width: 100%;
     height: 40vh;
     border: none;
-    margin: 2rem 0;
 }
 
 
