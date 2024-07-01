@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {    
     margin: 0;
@@ -141,6 +141,12 @@ iframe {
 
 input, button, text, select {
     font: inherit;
+}
+
+fieldset {
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin: 1rem 0;
 }
 
 
