@@ -1,4 +1,4 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {    
     margin: 0;
@@ -12,7 +12,7 @@ html {
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #222;
+    background: linear-gradient(#090401, #271405);
     color: white;
     line-height: 1.5;
 }
@@ -55,7 +55,7 @@ header nav ul {
     background-image: url('images/bg3.webp');
     background-repeat: no-repeat;
     background-size: cover;
-    height: 80vh;
+    height: 76vh;
     text-align: center;
 }
 
@@ -64,13 +64,22 @@ h1 {
     font-size: 4rem;
 }
 
+h2 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
 #hero h2 {
     padding: 5%;
     font-size: 2rem;
 }
 
 #about {
-    background-image: linear-gradient(#090401, #271405);
+    background-image: url('images/bg4.png'), linear-gradient(#090401, #271405);
+    background-size: cover;
     padding-bottom: 2rem;
 }
 
@@ -82,6 +91,7 @@ footer {
 
 footer p {
     margin: 2em auto 0;
+    font-size: 1rem;
 }
 
 
@@ -103,12 +113,13 @@ header nav {
 
 
 article {
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
 }
 
 .article_style {
-    margin: 2rem 1rem 0;
-    background-color: rgba(17, 17, 17, 0.5);
+    margin: 0 1rem 0;
+    background-color: rgba(54, 53, 53, 0.5);
+    width: 47%;
     padding: 1.5em;
     border-radius: 10px;
 }
@@ -116,8 +127,20 @@ article {
 
 iframe {
     width: 100%;
-    height: 40vh;
+    height: 30vw;
     border: none;
+}
+
+.box {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+input, button, text, select {
+    font: inherit;
 }
 
 
