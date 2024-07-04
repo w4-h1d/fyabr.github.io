@@ -254,10 +254,6 @@ a:active {
     border-top: 1px solid var(--HEADER-COLOR);
 }
 
-.header__nav li:last-child {
-    order: -1;
-}
-
 .header__nav a {
     display: block;
     text-align: center;
