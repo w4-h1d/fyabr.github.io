@@ -431,7 +431,7 @@ input, textarea {
     width: 80%;
     background-color: var(--FORM-INPUT-BG);
     border: none;
-    color: white;
+    color: var(--FORM-LABEL);
 }
 
 input::placeholder, textarea::placeholder {
