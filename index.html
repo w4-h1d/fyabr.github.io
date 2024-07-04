@@ -8,13 +8,14 @@
     <meta name="description" content="The Official Website of FYABR Investment Firm">
     <meta name="author" content="Fahim Abu Bakkar">
     <title>FYABR Inc.</title>
-    <!-- <link rel="stylesheet" href="/styles.css"> -->
-    <link rel="stylesheet" href="/styles2.css">
+    <link rel="stylesheet" href="/styles.css">
     <link rel="icon" type="image/x-icon" href="/images/favicon.png">
     <link rel="prefetch" href="images/bg3-mobile.webp">
     <link rel="preload" fetchpriority="high" as="image" href="images/bg3-mobile.webp" type="image/webp">
+    <link rel="prefetch" href="images/bg3.webp">
+    <link rel="preload" fetchpriority="high" as="image" href="images/bg3.webp" type="image/webp">
     <script src="scripts.js" defer></script>
-    <base href="" target="_top">
+    <base href="https://fyabr.com/" target="_top">
 </head>
 
 <body>
@@ -51,13 +52,13 @@
         <section id="about" class="main__section about">
             <p>The future of money is expected to be heavily influenced by technology. Predictions include the rise of cashless societies, the growth of cryptocurrencies, the continued adoption of digital currencies, and the potential offering of a Central Bank Digital Currency by governments.</p>
 
-            <div class="box">
-                <article class="article_style">
+            <div class="main__div">
+                <article class="article-style">
                     <h2>About Us</h2>
                     <p>Founded in <time datetime="2022">2022</time>, FYABR is a privately held firm. Our founders, Fahim Abu Bakkar Siddique and Najmul Huda Wahid, lead a team of 33 employees. In <time datetime="2024">2024</time>, our revenue reached 70,000 USD.</p>
                 </article>
 
-                <article class="article_style">
+                <article class="article-style">
                     <h2>Our Mission</h2>
                     <p>Our mission is to trade on crypto. We have an experienced team and we encourage others to learn trading and get a good rate of return. Our starting was tenable, and we are just past the first step of our success. Now we have many experienced traders in our team. We have a general section for beginners and a prime section for experienced traders.</p>
                 </article>
@@ -67,39 +68,40 @@
         <iframe src="https://coin360.com/widget/map?utm_source=embed_map" title="Coin360.com: Cryptocurrency Market State"></iframe>
 
         <section class="main__section-form">
-            <img src="images/letter-logo-1305x1080.png" alt="letter-logo">
+            <img src="images/letter-logo-v2.webp" alt="letter-logo" width="653" height="540">
             
             <article id="contact_form">
-                <h3>Get In Touch</h3>
-                <form action="https://formspree.io/f/xjkbbyqd" method="POST">
+                <h2>Get In Touch</h2>
+                <form action="https://formspree.io/f/meojqlrg" method="POST">
                     <fieldset>
-                        <legend>Send Us A Message</legend>
+                        <legend class="offscreen">Send Us A Message</legend>
                         <p>
-                            <label for="name">Full Name</label><br>
+                            <label for="name">Full Name</label>
                             <input type="text" id="name" name="Full Name" placeholder="Name" required autocomplete="on">
                         </p>
                         <p>
-                            <label for="email">Email Address</label><br>
+                            <label for="email">Email Address</label>
                             <input type="email" id="email" name="Email Address" placeholder="you@gmail.com" required autocomplete="on">
                         </p>
                         <p>
-                            <label for="telephone">Phone Number</label><br>
-                            <input type="tel" id="telephone" name="Phone Number" placeholder="+968 9900 8008" autocomplete="on">
+                            <label for="telephone">Phone Number</label>
+                            <input type="tel" id="telephone" name="Phone Number" placeholder="+968 9100 0000" autocomplete="on">
                         </p>
                         <p>
-                            <label for="message">Message</label><br>
+                            <label for="message">Message</label>
                             <textarea id="message" name="Message" cols="30" rows="10" placeholder="Your Message"></textarea>
                         </p>
                     </fieldset>
-                    <p>
-                        <button type="submit">Send</button>
-                        <button type="reset">Clear</button>
+                    <p class="form-button">
+                        <button type="submit" class="button-send">Send</button>
+                        <button type="reset" class="button-reset">Clear</button>
                     </p>
                 </form>
             </article>
-        </section>
 
-        <p><a href="#">Back to Top</a></p>
+            <p class="back-to-top"><a href="#">Back to Top</a></p>
+        </section>
+        
     </main>
 
     <footer class="footer">
