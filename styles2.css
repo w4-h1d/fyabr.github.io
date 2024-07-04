@@ -326,7 +326,7 @@ li .call-to-action {
 }
 
 
-@media screen and (min-width: 992px) and (min-aspect-ratio: 5/4) {
+@media screen and (min-width: 992px) {
     .hero {
         background-image: url('images/bg3.webp');
     }
@@ -389,7 +389,7 @@ li .call-to-action {
     } 
 }
 
-@media screen and (max-height: 430px) and (min-width: 768px)  and (min-aspect-ratio: 7/4) {
+@media screen and (max-height: 430px) and (min-width: 768px)  and (orientation: landscape) {
     .hero {
         background-image: url('images/bg3.webp');
     }
