@@ -69,6 +69,10 @@ input, button, textarea {
     text-align: center;
 }
 
+.margin-top {
+    margin-top: 5rem;
+}
+
 /* || GENERAL STYLE */
 html {
     scroll-behavior: smooth;
@@ -83,6 +87,8 @@ body {
     line-height: 1.5;
     min-height: 100vh;
 }
+
+
 
 h1, h2, p {
     margin: 0.5em;
@@ -112,7 +118,6 @@ a:active {
     width: 100%;
     position: absolute;
     top: 0;
-    z-index: 1;
 }
 
 .header__logo {
