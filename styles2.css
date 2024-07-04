@@ -245,7 +245,7 @@ a:active {
 
 .header__nav li {
     background-color: var(--HEADER-BG-COLOR);
-    padding: 2rem;
+    padding: 1.5rem;
     border-top: 1px solid var(--HEADER-COLOR);
 }
 
@@ -269,9 +269,11 @@ a:active {
 
 li .call-to-action {
     background: linear-gradient(to right, #bb8d37, #c89b50, #ebb875);
+    padding: 1rem;
     border-radius: 5px;
     color: #222111;
     font-weight: 600;
+    order: -1;
 }
 
 
@@ -302,7 +304,7 @@ li .call-to-action {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    background-image: url('images/bg2-mobile.webp');
+    background-image: url('images/bg3-mobile.webp');
     background-size: cover;
 }
 
