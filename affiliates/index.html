@@ -8,22 +8,30 @@
   <meta name="description" content="Affiliate Links of FYABR Investment Firm">
   <meta name="author" content="Fahim Abu Bakkar">
   <title>Affiliates of FYABR</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/styles2.css">
   <link rel="icon" type="image/x-icon" href="/images/favicon.png">
   <base href="" target="_top">
 </head>
 
 <body>
-  <header>
-    <a href="/"><img src="/images/logo.png" alt="fyabr logo" title="FYABR Inc."></a>
+  <header class="header">
+    <section class="header__title-line">
+        <img src="/images/logo.webp" alt="fyabr logo" title="FYABR Inc." width="206" height="50" class="header__logo">
 
-    <nav aria-label="primary navigation">
-      <ul>
+        <button class="menu-button" title="Open Nav Menu">
+            <div class="menu-icon"></div>
+         </button>
+    </section>
+
+    <button class="close-menu-button" title="Close Nav Menu" tabindex="-1"></button>
+
+    <nav aria-label="primary navigation" class="header__nav">
+        <ul class="header__ul">
         <li><a href="/">Home</a></li>
         <li><a href="/#about">About Us</a></li>
         <li><a href="/team">Our Team</a></li>
         <li><a href="/contact">Contact</a></li>
-        <li><a href="/contact#contact_form">Get In Touch</a></li>
+        <li><a href="/contact#contact_form" class="call-to-action">Get In Touch</a></li>
       </ul>
     </nav>
   </header>
@@ -42,25 +50,22 @@
     </figure>
 
     <p><a href="#">Back to Top</a></p>
-    <hr>
   </main>
 
-
-  <footer>
-    <nav aria-label="footer navigation">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/#about">About Us</a></li>
-        <li><a href="/team">Our Team</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/contact#contact_form">Get In Touch</a></li>
-      </ul>
+  <footer class="footer">
+    <nav aria-label="footer navigation" class="footer__nav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#about">About Us</a></li>
+          <li><a href="/team">Our Team</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
     </nav>
 
-    <p>&copy; <time datetime="2024">2024</time> FYABR Inc. All Rights Reserved.</p>
+    <p>&copy; <time id="year"></time> FYABR Inc. All Rights Reserved.</p>
 
     <p><a href="/credits">Credits</a></p>
-  </footer>
+</footer>
 </body>
 
 </html>
