@@ -389,7 +389,7 @@ li .call-to-action {
     } 
 }
 
-@media screen and (max-height: 430px) and (min-width: 768px)  and (min-aspect-ratio: 7/4) {
+/* @media screen and (max-height: 430px) and (min-width: 768px)  and (min-aspect-ratio: 7/4) {
     .hero {
         background-image: url('images/bg3.webp');
     }
@@ -450,4 +450,4 @@ li .call-to-action {
     .header__nav a:hover, .header__nav a:focus {
         transform: none;
     } 
-} 
+}  */
