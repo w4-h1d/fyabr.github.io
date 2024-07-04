@@ -1,4 +1,4 @@
-/*@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {    
     margin: 0;
@@ -48,6 +48,7 @@ header nav ul {
 #cta:hover, #cta a:hover {
     background: linear-gradient(to right, #d49e38, #c99a49, #dfa65b);
     color: #111;
+    transition: all 0.5s;
 
 }
 
@@ -86,6 +87,17 @@ p {
 footer {
     text-align: center;
     background-color: #111;
+    background-image: linear-gradient(
+  135deg,
+  hsl(0deg 0% 2%) 0%,
+  hsl(32deg 26% 11%) 54%,
+  hsl(33deg 33% 19%) 75%,
+  hsl(33deg 36% 27%) 86%,
+  hsl(34deg 38% 35%) 92%,
+  hsl(34deg 40% 43%) 96%,
+  hsl(34deg 45% 52%) 99%,
+  hsl(34deg 67% 62%) 100%
+);
     padding: 2rem;
 }
 
@@ -127,7 +139,7 @@ article {
 
 iframe {
     width: 100%;
-    height: 30vw;
+    height: max(35vh, 35vw);
     border: none;
 }
 
