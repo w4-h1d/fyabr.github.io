@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap'); */
 
 /* || RESET */
 * {
@@ -250,8 +250,7 @@ a:active {
 }
 
 .header__nav li:last-child {
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+    order: -1;
 }
 
 .header__nav a {
@@ -269,11 +268,11 @@ a:active {
 
 li .call-to-action {
     background: linear-gradient(to right, #bb8d37, #c89b50, #ebb875);
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 5px;
     color: #222111;
     font-weight: 600;
-    order: -1;
+    width: 60%;
 }
 
 
