@@ -197,23 +197,28 @@ a:active {
 }
 
 .menu-icon::before {
+    -webkit-transform: translate(-12px, -8px);
     transform: translate(-12px, -8px);
 }
 
 .menu-icon::after {
+    -webkit-transform: translate(-12px, +8px);
     transform: translate(-12px, +8px);
 }
 
 .header:focus-within .menu-icon {
     background-color: transparent;
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
 }
 
 .header:focus-within .menu-icon::before {
+    -webkit-transform: translateX(-12px) rotate(45deg);
     transform: translateX(-12px) rotate(45deg);
 }
 
 .header:focus-within .menu-icon::after {
+    -webkit-transform: translateX(-12px) rotate(-45deg);
     transform: translateX(-12px) rotate(-45deg);
 }
 
@@ -225,6 +230,7 @@ a:active {
 
 .header:focus-within .header__nav {
     display: block;
+    -webkit-transform-origin: top center;
     transform-origin: top center;
     -webkit-animation: showMenu 0.5s ease-in-out forwards;
             animation: showMenu 0.5s ease-in-out forwards;
@@ -235,10 +241,12 @@ a:active {
 }
 
 .header:focus-within .close-menu-button:focus {
+    -webkit-transform: translateX(-50px);
     transform: translateX(-50px);
 }
 
 .close-menu-button:focus+.header__nav {
+    -webkit-transform-origin: top center;
     transform-origin: top center;
     -webkit-animation: hideMenu 0.5s ease forwards;
             animation: hideMenu 0.5s ease forwards;
@@ -246,14 +254,17 @@ a:active {
 
 @-webkit-keyframes showMenu {
     0% {
+        -webkit-transform: scaleY(0);
         transform: scaleY(0);
     }
 
     80% {
+        -webkit-transform: scaleY(1.2);
         transform: scaleY(1.2);
     }
 
     100% {
+        -webkit-transform: scaleY(1);
         transform: scaleY(1);
     }
 }
@@ -274,14 +285,17 @@ a:active {
 
 @-webkit-keyframes hideMenu {
     0% {
+        -webkit-transform: scaleY(1);
         transform: scaleY(1);
     }
 
     20% {
+        -webkit-transform: scaleY(1.2);
         transform: scaleY(1.2);
     }
 
     100% {
+        -webkit-transform: scaleY(0);
         transform: scaleY(0);
     }
 }
@@ -325,7 +339,9 @@ a:active {
 }
 
 .header__nav a:hover, .header__nav a:focus {
+    -webkit-transform: scale(1.2);
     transform: scale(1.2);
+    -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
 
