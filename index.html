@@ -15,6 +15,14 @@
     <link rel="prefetch" href="images/bg3.webp">
     <link rel="preload" fetchpriority="high" as="image" href="images/bg3.webp" type="image/webp">
     <script src="scripts.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', function () {
+                let openButton = document.querySelector('.menu-button');
+                openButton.addEventListener('click', function () {
+                    document.querySelector('.header__nav').style.display = 'block';
+                });
+        });
+    </script>
 </head>
 
 <body>
