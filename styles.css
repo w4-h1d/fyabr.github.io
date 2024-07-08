@@ -114,16 +114,6 @@ iframe {
     border: none;
 }
 
-a:-webkit-any-link {
-    color: var(--HEADER-COLOR);
-    text-decoration: none;
-}
-
-a:-moz-any-link {
-    color: var(--HEADER-COLOR);
-    text-decoration: none;
-}
-
 a:any-link {
     color: var(--HEADER-COLOR);
     text-decoration: none;
@@ -197,28 +187,23 @@ a:active {
 }
 
 .menu-icon::before {
-    -webkit-transform: translate(-12px, -8px);
     transform: translate(-12px, -8px);
 }
 
 .menu-icon::after {
-    -webkit-transform: translate(-12px, +8px);
     transform: translate(-12px, +8px);
 }
 
 .header:focus-within .menu-icon {
     background-color: transparent;
-    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
 }
 
 .header:focus-within .menu-icon::before {
-    -webkit-transform: translateX(-12px) rotate(45deg);
     transform: translateX(-12px) rotate(45deg);
 }
 
 .header:focus-within .menu-icon::after {
-    -webkit-transform: translateX(-12px) rotate(-45deg);
     transform: translateX(-12px) rotate(-45deg);
 }
 
@@ -230,10 +215,8 @@ a:active {
 
 .header:focus-within .header__nav {
     display: block;
-    -webkit-transform-origin: top center;
     transform-origin: top center;
-    -webkit-animation: showMenu 0.5s ease-in-out forwards;
-            animation: showMenu 0.5s ease-in-out forwards;
+    animation: showMenu 0.5s ease-in-out forwards;
 } 
 
 .header:focus-within .close-menu-button {
@@ -241,32 +224,12 @@ a:active {
 }
 
 .header:focus-within .close-menu-button:focus {
-    -webkit-transform: translateX(-50px);
     transform: translateX(-50px);
 }
 
 .close-menu-button:focus+.header__nav {
-    -webkit-transform-origin: top center;
     transform-origin: top center;
-    -webkit-animation: hideMenu 0.5s ease forwards;
-            animation: hideMenu 0.5s ease forwards;
-}
-
-@-webkit-keyframes showMenu {
-    0% {
-        -webkit-transform: scaleY(0);
-        transform: scaleY(0);
-    }
-
-    80% {
-        -webkit-transform: scaleY(1.2);
-        transform: scaleY(1.2);
-    }
-
-    100% {
-        -webkit-transform: scaleY(1);
-        transform: scaleY(1);
-    }
+    animation: hideMenu 0.5s ease forwards;
 }
 
 @keyframes showMenu {
@@ -280,23 +243,6 @@ a:active {
 
     100% {
         transform: scaleY(1);
-    }
-}
-
-@-webkit-keyframes hideMenu {
-    0% {
-        -webkit-transform: scaleY(1);
-        transform: scaleY(1);
-    }
-
-    20% {
-        -webkit-transform: scaleY(1.2);
-        transform: scaleY(1.2);
-    }
-
-    100% {
-        -webkit-transform: scaleY(0);
-        transform: scaleY(0);
     }
 }
 
@@ -339,9 +285,7 @@ a:active {
 }
 
 .header__nav a:hover, .header__nav a:focus {
-    -webkit-transform: scale(1.2);
     transform: scale(1.2);
-    -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
 
@@ -457,14 +401,12 @@ form button {
 }
 
 .button-send:hover, .button-reset:hover {
-    -webkit-filter: brightness(125%);
-            filter: brightness(125%);
+    filter: brightness(125%);
     cursor: pointer;
 }
 
 .button-send:active, .button-reset:active {
-    -webkit-filter: brightness(85%);
-            filter: brightness(85%);
+    filter: brightness(85%);
 }
 
 fieldset {
@@ -492,21 +434,6 @@ input, textarea {
     color: var(--FORM-LABEL);
 }
 
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-    color: var(--PLACEHOLDER);
-}
-
-input::-moz-placeholder, textarea::-moz-placeholder {
-    color: var(--PLACEHOLDER);
-}
-
-input:-ms-input-placeholder, textarea:-ms-input-placeholder {
-    color: var(--PLACEHOLDER);
-}
-
-input::-ms-input-placeholder, textarea::-ms-input-placeholder {
-    color: var(--PLACEHOLDER);
-}
 
 input::placeholder, textarea::placeholder {
     color: var(--PLACEHOLDER);
@@ -523,8 +450,7 @@ input::placeholder, textarea::placeholder {
 }
 
 .back-to-top a:hover, .back-to-top a:focus {
-    -webkit-filter: brightness(150%);
-            filter: brightness(150%);
+    filter: brightness(150%);
 }
 
 /* || CONTACT */
@@ -640,14 +566,12 @@ input::placeholder, textarea::placeholder {
     }
     
     .header:focus-within .header__nav {
-        -webkit-animation: none;
-                animation: none;
+        animation: none;
     } 
     
     
     .close-menu-button:focus+.header__nav {
-        -webkit-animation: none;
-                animation: none;
+        animation: none;
     }
      
     .header__ul {
@@ -809,13 +733,11 @@ input::placeholder, textarea::placeholder {
     }
     
     .header:focus-within .header__nav {
-        -webkit-animation: none;
                 animation: none;
     } 
     
     
     .close-menu-button:focus+.header__nav {
-        -webkit-animation: none;
                 animation: none;
     }
      
