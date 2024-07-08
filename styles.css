@@ -161,7 +161,7 @@ a:active {
     display: none;
     background-color: transparent;
     outline: none;
-    border: 2px solid red;
+    border: none;
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
@@ -174,7 +174,8 @@ a:active {
     cursor: pointer;
 }
 
-.menu-icon, .menu-icon::before, .menu-icon::after {
+.menu-icon, .menu-icon::before, .menu-icon::after,
+.menu-icon-x::before, .menu-icon-x::after {
     background-color: var(--HEADER-COLOR);
     width: 24px;
     height: 2.5px;
@@ -184,7 +185,8 @@ a:active {
 }
 
 
-.menu-icon::before, .menu-icon::after {
+.menu-icon::before, .menu-icon::after,
+.menu-icon-x::before, .menu-icon-x::after {
     content: "";
 }
 
@@ -194,6 +196,14 @@ a:active {
 
 .menu-icon::after {
     transform: translate(-12px, +8px);
+}
+
+.menu-icon-x::before {
+    transform: translateX(-12px) rotate(45deg);
+}
+
+.menu-icon-x::after {
+    transform: translateX(-12px) rotate(-45deg);
 }
 
 
