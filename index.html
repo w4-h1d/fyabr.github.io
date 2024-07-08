@@ -17,10 +17,30 @@
     <script src="scripts.js" defer></script>
     <script defer>
         document.addEventListener('DOMContentLoaded', function () {
-                let openButton = document.querySelector('.menu-button');
-                openButton.addEventListener('click', function () {
+                async function delay(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+
+                let menu = document.querySelector('.menu-button');
+                let cmenu = document.querySelector('.close-menu-button');
+                
+                
+
+                menu.onfocus = function () {
                     document.querySelector('.header__nav').style.display = 'block';
-                });
+                    menu.style.display = 'none';
+                    cmenu.style.display = 'block';
+                    console.log('opened');
+                };
+
+                cmenu.onclick = function() {
+                    menu.style.display = 'block';
+                    cmenu.style.display = 'none';
+                    /* document.querySelector('.header__nav').style.animation = 'hideMenu 0.5s ease-in-out forwards'; */
+                    document.querySelector('.header__nav').style.display = 'none';
+                    console.log('closed'); 
+                };
+
         });
     </script>
 </head>
@@ -29,7 +49,7 @@
     <header class="header">
         <section class="header__title-line">
             <img src="/images/logo.webp" alt="fyabr logo" title="FYABR Inc." width="206" height="50" class="header__logo">
-            <!-- <a href="/"><img src="/images/logo.png" alt="fyabr logo" title="FYABR Inc." width="411" height="100" class="header__logo"></a> -->
+            <!-- <a href="/"><img src="/images/logo.webp" alt="fyabr logo" title="FYABR Inc." width="411" height="100" class="header__logo"></a> -->
 
             <button class="menu-button" title="Open Nav Menu">
                 <div class="menu-icon"></div>
@@ -74,7 +94,7 @@
             </div>
         </section>
 
-        <iframe src="https://coin360.com/widget/map?utm_source=embed_map" title="Coin360.com: Cryptocurrency Market State"></iframe>
+        <!-- <iframe src="https://coin360.com/widget/map?utm_source=embed_map" title="Coin360.com: Cryptocurrency Market State"></iframe> -->
 
         <section class="main__section-form">
             <img src="images/letter-logo-v2.webp" alt="letter-logo" width="653" height="540">

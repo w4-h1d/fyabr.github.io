@@ -161,12 +161,13 @@ a:active {
     display: none;
     background-color: transparent;
     outline: none;
-    border: none;
+    border: 2px solid red;
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
     width: 25px;
     height: 25px;
+    z-index: 1;
 }
 
 .menu-button:hover, .close-menu-button:hover {
@@ -182,6 +183,7 @@ a:active {
     transition: all 0.5s;
 }
 
+
 .menu-icon::before, .menu-icon::after {
     content: "";
 }
@@ -193,6 +195,7 @@ a:active {
 .menu-icon::after {
     transform: translate(-12px, +8px);
 }
+
 
 .header:focus-within .menu-icon {
     background-color: transparent;
@@ -213,24 +216,24 @@ a:active {
     
 }
 
-.header:focus-within .header__nav {
+/* .header:focus-within .header__nav {
     display: block;
     transform-origin: top center;
     animation: showMenu 0.5s ease-in-out forwards;
-} 
+} */
 
-.header:focus-within .close-menu-button {
+/* .header:focus-within .close-menu-button {
     display: block;
-}
+} */
 
-.header:focus-within .close-menu-button:focus {
+/* .header:focus-within .close-menu-button:focus {
     transform: translateX(-50px);
-}
+} */
 
-.close-menu-button:focus+.header__nav {
+/* .close-menu-button:focus+.header__nav {
     transform-origin: top center;
     animation: hideMenu 0.5s ease forwards;
-}
+} */
 
 @keyframes showMenu {
     0% {
