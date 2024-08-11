@@ -678,28 +678,34 @@ input::placeholder, textarea::placeholder {
     .team__div {
         width: 25vw;
         padding: 2em 2em 1em;
+        grid-column: span 2;
     }
 
     .team {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         justify-content: center;
         align-items: center;
     
     }
     
     .team__div:first-child {
-        grid-column: 1 / 4;
+        grid-column: 1 / 7;
         margin: 1em auto 3em;
     }
     
-    .team__div:nth-child(8) {
+    .team__div:nth-last-child(3) {
         grid-column: 1 / 4;
+        margin: 3em auto;
+    }
+
+    .team__div:nth-last-child(2) {
+        grid-column: 4 / 7;
         margin: 3em auto;
     }
     
     .team__p-footer {
-        grid-column: 1 / 4;
+        grid-column: 1 / 7;
         text-align: center;
         margin: 1em;
     }
