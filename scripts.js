@@ -1,7 +1,7 @@
 const year = document.getElementById("year");
 const thisYear = new Date().getFullYear();
 year.setAttribute("datetime", thisYear);
-year.textContent = thisYear;
+year.textContent = "2021";
 
 document.addEventListener('DOMContentLoaded', function () {
     let menu = document.querySelector('.menu-button');
