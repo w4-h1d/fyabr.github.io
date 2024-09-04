@@ -24,10 +24,3 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log('nav menu closed'); 
     };
 });
-
-let a = 0;
-
-while (true) {
-    console.log(a);
-    a++;
-}
