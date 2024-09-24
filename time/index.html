@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salah Time</title>
+    <script defer src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="center">
+        <div class="settings-icon-div">
+            <button class="settings-button" id="settings-btn"><img src="settings icon.png" alt="settings icon" width="16" height="16"></button>
+        </div>
+        <div class="setting hidden">
+            <p>Set your Latitude and Longitude.</p>
+            <form action="">
+                <input type="text" placeholder="Latitude" id="latitude" name="latitude">
+                <input type="text" placeholder="Longitude" id="longitude" name="longitude">
+                <button type="submit">Set</button>
+            </form>
+            <p id="errorMessage"></p>
+        </div>
+        <div class="" id="widget">
+            <div>
+                <div class="title">
+                    <img src="mosquelogo.svg" class="filter-white" height="50">
+                    <h1>Salah Time</h1>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td class="table_reminder boder_left" id="remaining">Prayer Time</td>
+                            <td class="table__time table_reminder boder_right" id="count">+/- 00:00:00</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="no-margin-padding"><div class="line"></div></td>
+                            <td class="no-margin-padding"><div class="line"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Fajr</td>
+                            <td class="table__time" id="fajr"><time id="Fajr">00:00 AM</time></td>
+                        </tr>
+                        <tr>
+                            <td>Sunrise</td>
+                            <td class="table__time"><time id="Sunrise">00:00 AM</time></td>
+                        </tr>
+                        <tr>
+                            <td>Dhuhr</td>
+                            <td class="table__time"><time id="Dhuhr">00:00 AM</time></td>
+                        </tr>
+                        <tr>
+                            <td>Asr</td>
+                            <td class="table__time"><time id="Asr">00:00 AM</time></td>
+                        </tr>
+                        <tr>
+                            <td>Maghrib</td>
+                            <td class="table__time"><time id="Maghrib">00:00 AM</time></td>
+                        </tr>
+                        <tr>
+                            <td>Isha</td>
+                            <td class="table__time"><time id="Isha">00:00 AM</time></td>
+                        </tr>
+                        <tr>
+                            <td class="no-margin-padding"><div class="line"></div></td>
+                            <td class="no-margin-padding"><div class="line"></div></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="table__footer"><time id="hijri">Hijri Date</time></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

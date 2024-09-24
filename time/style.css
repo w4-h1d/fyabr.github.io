@@ -1,0 +1,169 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --table-border-radius: 5px;
+}
+
+html {
+    font-family: "Roboto", Arial, 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: #000;
+    color: #fff;
+}
+
+.filter-white{
+    filter: invert(100%);
+}
+
+section {
+    width: 245px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    background-color: #232323e6;
+    padding: 5px 15px 5px;
+    position: relative;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+section h1 {
+    text-align: center;
+    margin-left: 5px;
+}
+
+table {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    padding: 5px;
+}
+
+thead, tbody, tfoot, tr {
+    display: contents;
+}
+
+td {
+    padding: 2.5px 5px;
+    margin: 2.5px 0;
+}
+
+.table__time {
+    text-align: right;
+}
+
+.table__footer {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+    grid-column: 1 / span 2;
+    margin-top: 5px;
+}
+
+.table_reminder {
+    font-weight: 900;
+    font-size: 1.1rem;
+    background-color: rgba(255, 255, 255, 0.295);
+    color: #000;
+    margin: 0 0 10px;
+    padding: 5px;
+}
+
+.boder_left {
+    border-radius: var(--table-border-radius) 0 0 var(--table-border-radius);
+}
+
+.boder_right {
+    border-radius: 0 var(--table-border-radius) var(--table-border-radius) 0;
+}
+
+.line {
+    background-color: white;
+    height: 2px;
+}
+
+.no-margin-padding {
+    margin: 3px 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.setting {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 1em;
+}
+
+.settings-icon-div {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+}
+
+.settings-button {
+    width: 16px;
+    height: 16px;
+    background-color: transparent;
+    border: 0;
+    box-shadow: 0;
+    border-radius: 10px;
+    filter: brightness(0.9);
+}
+
+.settings-button:hover, .settings-button:active {
+    box-shadow: 1px 1px;
+    border-radius: 10px;
+    transform: scale(1.15);
+    filter: brightness(1);
+    transition: all 0.3s;
+}
+
+.settings-button:active {
+    transform: scale(0.85);
+    filter: brightness(0.8);
+    transition: all 0.3s;
+}
+
+.darken {
+    filter: brightness(0.5);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75em;
+    margin: 1em 0;
+}
+
+input, form {
+    font: inherit;
+}
+
+input {
+    width: calc(100% - 15px);
+}
+
+form button {
+    width: 50px;
+    font: bold;
+}
+
+#errorMessage {
+    color: red;
+    font-size: large;
+    font-weight: bold;
+}
