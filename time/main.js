@@ -135,6 +135,7 @@ const newDay = (date) => {
     if (date !== tomorrow.toLocaleDateString()) {
         today = initApp();
         x = 0;
+        playAudio = false;
         console.log("New Day Loaded");
     }
 }
@@ -142,6 +143,7 @@ const newDay = (date) => {
 if (!localStorage.getItem("Latitude") && !localStorage.getItem("Longitude")) {
     document.querySelector(".setting").classList.toggle("hidden");
     document.querySelector("#widget").classList.toggle("darken");
+    document.querySelector("section").classList.toggle("darken-bg");
 }
 
 const initApp = () => {
@@ -181,6 +183,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
 
         document.querySelector(".setting").classList.toggle("hidden");
         document.querySelector("#widget").classList.toggle("darken");
+        document.querySelector("section").classList.toggle("darken-bg");
     } else {
         document.querySelector("#errorMessage").style.color = "red";
         document.querySelector("#errorMessage").innerHTML = "Invalid Coordinates!";
@@ -190,7 +193,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
 let today = initApp();
 
 let x = 0;
-
+let playAudio = false;
 
 setInterval(() => {
     if (localStorage.getItem("Prayer")) {
@@ -204,10 +207,15 @@ setInterval(() => {
         const remaining = toHours(remainingSec);
     
         document.querySelector("#remaining").innerHTML = timing[x];
-    
+        
+        if (remainingSec === 0 && !playAudio) {
+            document.querySelector("#audio-alert").play();
+            playAudio = true;
+        }
     
         if (remainingSec > 1800 && x !== 5) {
             x++;
+    
         }
     
     
@@ -219,13 +227,16 @@ setInterval(() => {
     
         newDay(today.toLocaleDateString());
     }
-}, 1000);
+}, 20);
 
 
 document.querySelector("#settings-btn").addEventListener("click", () => {
     document.querySelector(".setting").classList.toggle("hidden");
     document.querySelector("#widget").classList.toggle("darken");
+    document.querySelector("section").classList.toggle("darken-bg");
 });
+
+
 
 
 

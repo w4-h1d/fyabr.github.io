@@ -10,22 +10,30 @@
 <body>
     <section class="center">
         <div class="settings-icon-div">
-            <button class="settings-button" id="settings-btn"><img src="settings icon.png" alt="settings icon" width="16" height="16"></button>
+            <button class="settings-button" id="settings-btn"><img src="settings-icon.svg" alt="settings icon" width="16" height="16"></button>
         </div>
         <div class="setting hidden">
             <p>Set your Latitude and Longitude.</p>
-            <form action="">
+            <form>
                 <input type="text" placeholder="Latitude" id="latitude" name="latitude">
                 <input type="text" placeholder="Longitude" id="longitude" name="longitude">
                 <button type="submit">Set</button>
             </form>
             <p id="errorMessage"></p>
+            <audio id="audio-alert">
+                <source src="level-up-by-UNIVERSFIELD.mp3" type="audio/mpeg">
+            </audio>
+            <p><a href="https://pixabay.com/sound-effects/level-up-191997/" target="_blank">Audio SFX Used</a></p>
         </div>
         <div class="" id="widget">
             <div>
                 <div class="title">
-                    <img src="mosquelogo.svg" class="filter-white" height="50">
-                    <h1>Salah Time</h1>
+                    <img src="mosquelogo.svg" class="filter-white" height="50" alt="LOGO">
+                    <div>
+                        <h1>Salah Time</h1>
+                        <h2 class="small">Developed By Wahid</h2>
+                    </div>
+                    
                 </div>
                 <table>
                     <thead>
@@ -69,9 +77,7 @@
                         </tr>
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <td class="table__footer"><time id="hijri">Hijri Date</time></td>
-                        </tr>
+                        <tr><td class="table__footer"><time id="hijri">Hijri Date</time></td></tr>
                     </tfoot>
                 </table>
             </div>
