@@ -97,7 +97,7 @@ const to24Hour = (time) => {
 //////////////////////////////////////////////////////////////////////////
 const timing = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
-async function getTime (date) {
+const getTime = async (date) => {
 
     const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${localStorage.getItem("Latitude")}&longitude=${localStorage.getItem("Longitude")}?method=4`
 
@@ -175,18 +175,21 @@ document.querySelector("form").addEventListener("submit", (e) => {
     if (latitude >= -90 && latitude <= 90 && longitude >= -180 && longitude <= 180) {
         localStorage.setItem("Latitude", latitude);
         localStorage.setItem("Longitude", longitude);
-        document.querySelector("#errorMessage").style.color = "green";
-        document.querySelector("#errorMessage").innerHTML = "Coordinates Set Successfully!";
+        document.querySelector("#errorMessage").style.color = "var(--error-green)";
+        document.querySelector("#errorMessage").innerHTML = "Coordinates set successfully!";
 
         today = initApp();
         x = 0;
 
-        document.querySelector(".setting").classList.toggle("hidden");
+        setTimeout(() => {
+            document.querySelector(".setting").classList.toggle("hidden");
+        }, 1000);
+        
         document.querySelector("#widget").classList.toggle("darken");
         document.querySelector("section").classList.toggle("darken-bg");
     } else {
-        document.querySelector("#errorMessage").style.color = "red";
-        document.querySelector("#errorMessage").innerHTML = "Invalid Coordinates!";
+        document.querySelector("#errorMessage").style.color = "var(--error-red)";
+        document.querySelector("#errorMessage").innerHTML = "Invalid coordinates!";
     }
 });
 
@@ -235,6 +238,39 @@ document.querySelector("#settings-btn").addEventListener("click", () => {
     document.querySelector("#widget").classList.toggle("darken");
     document.querySelector("section").classList.toggle("darken-bg");
 });
+
+
+// Sets Light Mode theme - Default theme: dark mode
+let lightMode;
+
+if (!localStorage.getItem("lightMode")) {
+    lightMode = false;
+} else {
+    lightMode = JSON.parse(localStorage.getItem("lightMode"));
+}
+
+if (lightMode) {
+    document.getElementById("theme").setAttribute("href", "css/light.css");
+    document.querySelector("#theme-btn img").setAttribute("src", "images/theme-icon-dark.svg");
+}
+
+document.querySelector("#theme-btn").addEventListener("click", () => {
+    const theme = document.getElementById("theme");
+    const themeBtn = document.querySelector("#theme-btn img");
+    
+    if (!lightMode) {
+        theme.setAttribute("href", "css/light.css");
+        themeBtn.setAttribute("src", "images/theme-icon-dark.svg");
+        localStorage.setItem("lightMode", true);
+        lightMode = true;
+    } else {
+        theme.removeAttribute("href");
+        themeBtn.setAttribute("src", "images/theme-icon.svg");
+        localStorage.setItem("lightMode", false);
+        lightMode = false;
+    }
+});
+
 
 
 
