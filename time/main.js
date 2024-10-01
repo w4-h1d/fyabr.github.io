@@ -358,10 +358,13 @@ document.getElementById('geocodeForm').addEventListener("submit", function(event
 
 const zoom = () => {
     const scale = document.querySelector("#zoom").value;
-    localStorage.setItem("scale", scale);
-    document.querySelector(":root").style.setProperty("--scale", scale);
 
-    toggleSettings();
+    if (!isNaN(parseFloat(scale))) {
+        localStorage.setItem("scale", scale);
+        document.querySelector(":root").style.setProperty("--scale", scale);
+        console.log("scale set!");
+        toggleSettings();
+    }
 }
 
 document.querySelector("#setZoom").onclick = (e) => {
@@ -372,3 +375,5 @@ document.querySelector("#setZoom").onclick = (e) => {
 if (localStorage.getItem("scale")) {
     document.querySelector(":root").style.setProperty("--scale", localStorage.getItem("scale"));
 }
+
+console.log(isNaN(parseFloat("abc")));
