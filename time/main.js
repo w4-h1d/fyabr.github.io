@@ -92,40 +92,58 @@ const to24Hour = (time) => {
     }
 }
 
+const success = (pos) => {
+    const coordinates = pos.coords;
+    localStorage.setItem("Latitude", coordinates.latitude);
+    localStorage.setItem("Longitude", coordinates.longitude);
+}
+  
+const error = (err) => {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+
 ////////////////////////////////////////////////////////////////////////////
 ////////////             END OF HELPER FUNCTIONS             //////////////
 //////////////////////////////////////////////////////////////////////////
 const timing = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
+const toggleSettings = () => {
+    document.querySelector(".setting").classList.toggle("hidden");
+    document.querySelector("#widget").classList.toggle("darken");
+    document.querySelector("section").classList.toggle("darken-bg");
+}
+
 const getTime = async (date) => {
 
-    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${localStorage.getItem("Latitude")}&longitude=${localStorage.getItem("Longitude")}?method=4`
+    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${localStorage.getItem("Latitude")}&longitude=${localStorage.getItem("Longitude")}&method=4`
 
-    try {
-        const response = await fetch(url);
-        const apiData = await response.json();
+    if (localStorage.getItem("Latitude") && localStorage.getItem("Longitude")) {
+        try {
+            const response = await fetch(url);
+            const apiData = await response.json();
 
-        
-        if (response.ok) {
-            const Prayer = {
-                date: `${apiData.data.date.hijri.day} ${apiData.data.date.hijri.month.en} ${apiData.data.date.hijri.year}`,
-                Fajr: apiData.data.timings.Fajr,
-                Sunrise: apiData.data.timings.Sunrise,
-                Dhuhr: apiData.data.timings.Dhuhr,
-                Asr: apiData.data.timings.Asr,
-                Maghrib: apiData.data.timings.Maghrib,
-                Isha: apiData.data.timings.Isha
+            
+            if (response.ok) {
+                const Prayer = {
+                    date: `${apiData.data.date.hijri.day} ${apiData.data.date.hijri.month.en} ${apiData.data.date.hijri.year}`,
+                    Fajr: apiData.data.timings.Fajr,
+                    Sunrise: apiData.data.timings.Sunrise,
+                    Dhuhr: apiData.data.timings.Dhuhr,
+                    Asr: apiData.data.timings.Asr,
+                    Maghrib: apiData.data.timings.Maghrib,
+                    Isha: apiData.data.timings.Isha
+                }
+            
+                localStorage.setItem("Prayer", JSON.stringify(Prayer));
+                console.log("API Data Received!");
             }
-        
-            localStorage.setItem("Prayer", JSON.stringify(Prayer));
-            console.log("API Data Received!");
-        }
-    } catch (error) {
-        console.error(error);
-        console.error("Cannot Connect to Interent!");
+        } catch (error) {
+            console.error(error);
+            console.error("Fetch error!");
 
-        document.querySelector("#errorMessage").style.color = "red";
-        document.querySelector("#errorMessage").innerHTML = "Cannot Connect to Interent!";
+            document.querySelector("#errorMessage").style.color = "var(--error-red)";
+            document.querySelector("#errorMessage").innerHTML = "Could not fetch prayer times. :(";
+        }
     }
 }
 
@@ -141,9 +159,12 @@ const newDay = (date) => {
 }
 
 if (!localStorage.getItem("Latitude") && !localStorage.getItem("Longitude")) {
-    document.querySelector(".setting").classList.toggle("hidden");
-    document.querySelector("#widget").classList.toggle("darken");
-    document.querySelector("section").classList.toggle("darken-bg");
+    toggleSettings();
+
+    navigator.geolocation.getCurrentPosition(success, error); // get device location
+
+    document.querySelector("#errorMessage").style.color = "var(--error-red)";
+    document.querySelector("#errorMessage").innerHTML = "Set your location or refresh to load device location.";
 }
 
 const initApp = () => {
@@ -163,40 +184,11 @@ const initApp = () => {
     return today;
 }
 
-document.querySelector("form").addEventListener("submit", (e) => {
-    e.preventDefault();
-
-    let latitude = document.getElementById("latitude").value;
-    let longitude = document.getElementById("longitude").value;
-
-    latitude = parseFloat(latitude);
-    longitude = parseFloat(longitude);
-
-    if (latitude >= -90 && latitude <= 90 && longitude >= -180 && longitude <= 180) {
-        localStorage.setItem("Latitude", latitude);
-        localStorage.setItem("Longitude", longitude);
-        document.querySelector("#errorMessage").style.color = "var(--error-green)";
-        document.querySelector("#errorMessage").innerHTML = "Coordinates set successfully!";
-
-        today = initApp();
-        x = 0;
-
-        setTimeout(() => {
-            document.querySelector(".setting").classList.toggle("hidden");
-        }, 1000);
-        
-        document.querySelector("#widget").classList.toggle("darken");
-        document.querySelector("section").classList.toggle("darken-bg");
-    } else {
-        document.querySelector("#errorMessage").style.color = "var(--error-red)";
-        document.querySelector("#errorMessage").innerHTML = "Invalid coordinates!";
-    }
-});
-
 let today = initApp();
-
 let x = 0;
 let playAudio = false;
+
+
 
 setInterval(() => {
     if (localStorage.getItem("Prayer")) {
@@ -234,9 +226,32 @@ setInterval(() => {
 
 
 document.querySelector("#settings-btn").addEventListener("click", () => {
-    document.querySelector(".setting").classList.toggle("hidden");
-    document.querySelector("#widget").classList.toggle("darken");
-    document.querySelector("section").classList.toggle("darken-bg");
+    toggleSettings();
+
+    if (localStorage.getItem("Location")) {
+        document.getElementById("currentLocation").innerHTML = localStorage.getItem("Location");
+    } else if (localStorage.getItem("Latitude") && localStorage.getItem("Longitude") && !localStorage.getItem("Location")) {
+        const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?lat=${localStorage.getItem("Latitude")}&lon=${localStorage.getItem("Longitude")}&format=json`;
+
+        fetch(reverseGeocodeUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById("currentLocation").innerHTML = "Device Location";
+                } else {
+                    localStorage.setItem("Location", data.display_name);
+                    document.getElementById("currentLocation").innerHTML = data.display_name;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching suggestions:', error);
+                document.getElementById("currentLocation").innerHTML = "Cannot detect location!";
+                document.getElementById("currentLocation").style.color = "var(--error-red)";
+                
+            })
+        
+        document.getElementById("currentLocation").innerHTML = "Device Location";
+    }
 });
 
 
@@ -271,9 +286,89 @@ document.querySelector("#theme-btn").addEventListener("click", () => {
     }
 });
 
+const suggestionsDiv = document.getElementById('suggestions');
 
+// Function to fetch suggestions
+document.getElementById('address').addEventListener("input", function() {
+  const address = this.value;
 
+  if (address.length < 3) {
+    suggestionsDiv.innerHTML = ''; // Clear suggestions if the input is too short
+    return;
+  }
 
+  const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json&limit=5`;
 
+  fetch(geocodeUrl)
+    .then(response => response.json())
+    .then(data => {
+      suggestionsDiv.innerHTML = ''; // Clear previous suggestions
+      data.forEach(location => {
+        const suggestion = document.createElement('div');
+        suggestion.textContent = location.display_name;
+        suggestion.addEventListener('click', () => {
+          document.getElementById('address').value = location.display_name;
+          suggestionsDiv.innerHTML = ''; // Clear suggestions once selected
+        });
+        suggestionsDiv.appendChild(suggestion);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching suggestions:', error);
+    });
+});
 
+// Fetch coordinates for selected address
+document.getElementById('geocodeForm').addEventListener("submit", function(event) {
+  event.preventDefault();
+  
+  const address = document.getElementById('address').value;
 
+  const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`;
+
+  fetch(geocodeUrl)
+    .then(response => response.json())
+    .then(data => {
+      if (data.length > 0) {
+        const location = data[0];
+
+        localStorage.setItem("Latitude", location.lat);
+        localStorage.setItem("Longitude", location.lon);
+        localStorage.setItem("Location", location.display_name);
+
+        document.querySelector("#errorMessage").style.color = "var(--error-green)";
+        document.querySelector("#errorMessage").innerHTML = "Location set successfully!";
+        document.getElementById("currentLocation").innerHTML = localStorage.getItem("Location");
+
+        today = initApp();
+        x = 0;
+
+        setTimeout(() => {
+            toggleSettings();
+        }, 1000);
+      } else {
+        document.querySelector("#errorMessage").style.color = "var(--error-red)";
+        document.querySelector("#errorMessage").innerHTML = "Location not found!";
+      }
+    })
+    .catch(error => {
+        console.error('Error fetching suggestions:', error);
+    });
+});
+
+const zoom = () => {
+    const scale = document.querySelector("#zoom").value;
+    localStorage.setItem("scale", scale);
+    document.querySelector(":root").style.setProperty("--scale", scale);
+
+    toggleSettings();
+}
+
+document.querySelector("#setZoom").onclick = (e) => {
+    e.preventDefault();
+    zoom();
+}
+
+if (localStorage.getItem("scale")) {
+    document.querySelector(":root").style.setProperty("--scale", localStorage.getItem("scale"));
+}

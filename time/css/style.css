@@ -12,10 +12,14 @@
     --font-color: #fff;
     --accent-1: #232323e6;
     --accent-2: #1e1e1e;
+    --accent-3: #575757;
     --reminder-text: #1e1e1e;
-    --reminder-color: rgba(255, 255, 255, 0.595);
+    --reminder-color: rgb(165, 165, 165);
     --error-red: #FC6161;
     --error-green: #68FF68;
+
+    /*Size*/
+    --scale: 1;
 }
 
 html {
@@ -23,6 +27,17 @@ html {
     font-weight: 700;
     background-color: var(--background);
     color: var(--font-color);
+
+    font-size: calc(1rem * var(--scale));
+}
+
+button img {
+    width: calc(16px * var(--scale));
+    height: calc(16px * var(--scale));
+}
+
+.logo {
+    height: calc(50px * var(--scale));
 }
 
 h1 {
@@ -34,30 +49,33 @@ a {
 }
 
 section {
-    width: 230px;
-    border: 1px solid var(--background);
+    width: calc(230px * var(--scale));
+    /* border: 1px solid var(--background); */
     border-radius: 0;
     background-color: var(--accent-1);
-    padding: 5px 15px 5px;
+    padding: calc(5px * var(--scale)) calc(15px * var(--scale)) calc(5px * var(--scale));
     position: relative;
+    transition: all 0.2s;
 }
 
 .title {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    margin: calc(10px * var(--scale)) 0;
 }
 
 section h1 {
     text-align: center;
     margin-left: 5px;
+    margin-left: calc(5px * var(--scale));
 }
 
 table {
     display: grid;
     grid-template-columns: 1fr 2fr;
     padding: 5px;
+    padding: calc(5px * var(--scale));
 }
 
 thead, tbody, tfoot, tr {
@@ -65,8 +83,9 @@ thead, tbody, tfoot, tr {
 }
 
 td {
-    padding: 2.5px 5px;
-    margin: 2.5px 0;
+    padding: calc(2.5px * var(--scale)) calc(5px * var(--scale));
+    margin: calc(2.5px * var(--scale)) 0;
+    font-size: 1rem;
 }
 
 .table__time {
@@ -79,6 +98,7 @@ td {
     text-align: center;
     grid-column: 1 / span 2;
     margin-top: 5px;
+    margin-top: calc(5px * var(--scale));
 }
 
 .table_reminder {
@@ -87,7 +107,9 @@ td {
     background-color: var(--reminder-color);
     color: var(--reminder-text);
     margin: 0 0 10px;
+    margin: 0 0 calc(10px * var(--scale));
     padding: 5px;
+    padding: calc(5px * var(--scale));
 }
 
 .boder_left {
@@ -101,10 +123,12 @@ td {
 .line {
     background-color: var(--font-color);
     height: 2px;
+    height: calc(2px * var(--scale));
 }
 
 .no-margin-padding {
     margin: 3px 0;
+    margin: calc(3px * var(--scale)) 0;
     padding: 0;
 }
 
@@ -116,33 +140,35 @@ td {
     text-align: center;
     font-size: 0.8rem;
     font-weight: 500;
-    margin-top: 1.5em;
+    margin-top: calc(4px * var(--scale));
 }
 
 .settings-icon-div {
     position: absolute;
     top: 0.5em;
+    top: calc(8px * var(--scale));
     left: 0.5em;
+    left: calc(8px * var(--scale));
 }
 
 .theme-icon-div {
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
+    top: calc(8px * var(--scale));
+    right: calc(8px * var(--scale));
 }
 
 .settings-button {
-    width: 16px;
-    height: 16px;
+    width: calc(16px * var(--scale));
+    height: calc(16px * var(--scale));
     background-color: transparent;
     border: 0;
     box-shadow: 0;
-    border-radius: 10px;
+    border-radius: calc(10px * var(--scale));
     filter: brightness(0.9);
 }
 
 .settings-button:hover {
-    border-radius: 10px;
+    border-radius: calc(10px * var(--scale));
     transform: scale(1.15);
     filter: brightness(1);
     transition: all 0.3s;
@@ -158,32 +184,58 @@ td {
     filter: brightness(0.5);
 }
 
-form {
+#geocodeForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.75em;
-    margin: 1em 0;
+/*     margin-bottom: 1em; */
 }
 
-input, form {
+input, form, button, select {
     font: inherit;
     text-align: center;
 }
 
 input {
-    width: calc(100% - 15px);
+    width: calc(100% - calc(15px * var(--scale)));
+    height: 1.5rem;
+    box-shadow: 0;
+    outline: 0;
+    border: 1px solid var(--background);
 }
 
-form button {
-    width: 50px;
-    font: bold;
+label {
+    font-weight: 600;
+}
+
+form button, select {
+    width: calc(100px * var(--scale));
+    border-radius: calc(5px * var(--scale));
+    font-weight: bold;
+}
+
+#setZoom {
+    width: calc(40px * var(--scale));
+}
+
+form button:active {
+    filter: brightness(90%);
+    transform: scale(95%);
+    transition: all 0.1s;
 }
 
 #errorMessage {
-    font-size: large;
+    font-size: 1rem;
     font-weight: bold;
+    margin-bottom: calc(10px * var(--scale));
+}
+
+#currentLocation {
+    margin-top: calc(5px * var(--scale));
+    color: var(--error-green);
+    font-style: italic;
+    font-weight: 900;
 }
 
 .small {
@@ -197,4 +249,46 @@ form button {
 .darken-bg {
     background-color: var(--accent-2);
     transition: all 0.3s;
+}
+
+#address { 
+    margin: calc(10px * var(--scale)) 0 0; 
+}
+
+#suggestions {
+    width: calc(100% - calc(15px * var(--scale)));
+    margin-top: 0;
+    margin-bottom: calc(10px * var(--scale));
+    border: 1px solid var(--background);
+    border-top: 0;
+}
+
+#suggestions div {
+    padding: 5px; 
+    cursor: pointer; 
+    background-color: var(--accent-3);
+}
+
+#suggestions div:hover {
+    color: var(--accent-1);
+    background-color: var(--font-color); 
+}
+
+.setting-div {
+    margin: 1.5em auto;
+    width: calc(100% - calc(15px * var(--scale)));;
+    background-color: var(--font-color);
+    height: calc(0px * var(--scale));
+}
+
+.margin {
+    margin-top: 0.75em;
+}
+
+.full-width {
+    background-color: var(--font-color);
+    height: calc(2px * var(--scale));
+    width: calc(230px * var(--scale));
+    margin: 1.5em auto;
+    margin-left: calc(-15px * var(--scale));
 }

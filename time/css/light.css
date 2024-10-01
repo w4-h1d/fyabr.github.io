@@ -4,6 +4,7 @@
     --font-color: #202020;
     --accent-1: #cececee6;
     --accent-2: #969696;
+    --accent-3: var(--accent-1);
     --reminder-text: var(--accent-1);
     --reminder-color: var(--font-color);
     --error-red: #6E0000;
