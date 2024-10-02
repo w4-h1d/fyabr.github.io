@@ -27,7 +27,6 @@ html {
     font-weight: 700;
     background-color: var(--background);
     color: var(--font-color);
-
     font-size: calc(1rem * var(--scale));
 }
 
@@ -50,7 +49,6 @@ a {
 
 section {
     width: calc(230px * var(--scale));
-    /* border: 1px solid var(--background); */
     border-radius: 0;
     background-color: var(--accent-1);
     padding: calc(5px * var(--scale)) calc(15px * var(--scale)) calc(5px * var(--scale));
@@ -67,14 +65,12 @@ section {
 
 section h1 {
     text-align: center;
-    margin-left: 5px;
     margin-left: calc(5px * var(--scale));
 }
 
 table {
     display: grid;
     grid-template-columns: 1fr 2fr;
-    padding: 5px;
     padding: calc(5px * var(--scale));
 }
 
@@ -97,7 +93,6 @@ td {
     font-weight: 500;
     text-align: center;
     grid-column: 1 / span 2;
-    margin-top: 5px;
     margin-top: calc(5px * var(--scale));
 }
 
@@ -106,9 +101,7 @@ td {
     font-size: 1.1rem;
     background-color: var(--reminder-color);
     color: var(--reminder-text);
-    margin: 0 0 10px;
     margin: 0 0 calc(10px * var(--scale));
-    padding: 5px;
     padding: calc(5px * var(--scale));
 }
 
@@ -122,12 +115,10 @@ td {
 
 .line {
     background-color: var(--font-color);
-    height: 2px;
     height: calc(2px * var(--scale));
 }
 
 .no-margin-padding {
-    margin: 3px 0;
     margin: calc(3px * var(--scale)) 0;
     padding: 0;
 }
@@ -145,9 +136,7 @@ td {
 
 .settings-icon-div {
     position: absolute;
-    top: 0.5em;
     top: calc(8px * var(--scale));
-    left: 0.5em;
     left: calc(8px * var(--scale));
 }
 
@@ -189,7 +178,6 @@ td {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-/*     margin-bottom: 1em; */
 }
 
 input, form, button, select {
@@ -226,9 +214,10 @@ form button:active {
 }
 
 #errorMessage {
+    width: calc(100% - calc(15px * var(--scale)));
     font-size: 1rem;
     font-weight: bold;
-    margin-bottom: calc(10px * var(--scale));
+    margin: calc(10px * var(--scale)) auto;
 }
 
 #currentLocation {
@@ -241,8 +230,8 @@ form button:active {
 .small {
     font-size: 0.45rem;
     text-align: right;
-    margin-right: 2.5px;
-    margin-top: -2.5px;
+    margin-right: calc(2.5px * var(--scale));
+    margin-top: calc(-2.5px * var(--scale));
     font-weight: 800;
 }
 
@@ -264,14 +253,15 @@ form button:active {
 }
 
 #suggestions div {
-    padding: 5px; 
+    padding: calc(5px * var(--scale)); 
     cursor: pointer; 
     background-color: var(--accent-3);
 }
 
 #suggestions div:hover {
     color: var(--accent-1);
-    background-color: var(--font-color); 
+    background-color: var(--font-color);
+    border: 1px solid var(--background);
 }
 
 .setting-div {

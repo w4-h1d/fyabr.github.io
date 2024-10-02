@@ -375,5 +375,3 @@ document.querySelector("#setZoom").onclick = (e) => {
 if (localStorage.getItem("scale")) {
     document.querySelector(":root").style.setProperty("--scale", localStorage.getItem("scale"));
 }
-
-console.log(isNaN(parseFloat("abc")));
