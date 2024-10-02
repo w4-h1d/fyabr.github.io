@@ -115,7 +115,8 @@ const toggleSettings = () => {
 
 const getTime = async (date) => {
 
-    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${localStorage.getItem("Latitude")}&longitude=${localStorage.getItem("Longitude")}&method=4`
+    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${localStorage.getItem("Latitude")}&longitude=${localStorage.getItem("Longitude")}&method=4`;
+    console.log(url);
 
     if (localStorage.getItem("Latitude") && localStorage.getItem("Longitude")) {
         try {
@@ -302,19 +303,21 @@ document.getElementById('address').addEventListener("input", function() {
   fetch(geocodeUrl)
     .then(response => response.json())
     .then(data => {
-      suggestionsDiv.innerHTML = ''; // Clear previous suggestions
-      data.forEach(location => {
+        suggestionsDiv.innerHTML = ''; // Clear previous suggestions
+        data.forEach(location => {
         const suggestion = document.createElement('div');
         suggestion.textContent = location.display_name;
         suggestion.addEventListener('click', () => {
-          document.getElementById('address').value = location.display_name;
-          suggestionsDiv.innerHTML = ''; // Clear suggestions once selected
+            document.getElementById('address').value = location.display_name;
+            suggestionsDiv.innerHTML = ''; // Clear suggestions once selected
         });
         suggestionsDiv.appendChild(suggestion);
-      });
+        });
     })
     .catch(error => {
-      console.error('Error fetching suggestions:', error);
+        console.error('Error fetching suggestions:', error);
+        document.querySelector("#errorMessage").style.color = "var(--error-red)";
+        document.querySelector("#errorMessage").innerHTML = "Could not fetch location!";
     });
 });
 
@@ -353,6 +356,8 @@ document.getElementById('geocodeForm').addEventListener("submit", function(event
     })
     .catch(error => {
         console.error('Error fetching suggestions:', error);
+        document.querySelector("#errorMessage").style.color = "var(--error-red)";
+        document.querySelector("#errorMessage").innerHTML = "Could not set location!";
     });
 });
 
