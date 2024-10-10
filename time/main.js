@@ -6,15 +6,10 @@ const toHours = (time) => {
     if (parseInt(time) < 0) {
         time = parseInt(time) * (-1);
     }
-
     time = parseInt(time);
-
     let hours = (time - (time % 3600)) / 3600;
-
     let seconds = time - (hours * 3600);
-
     let minutes = (seconds - (seconds % 60)) / 60;
-
     seconds = seconds - (minutes * 60);
 
     if (hours < 10) {
@@ -28,7 +23,7 @@ const toHours = (time) => {
     }
 
     return `${hours}:${minutes}:${seconds}`;
-}
+};
 
 const toSeconds = (time) => {
     const format = /(\d{2}:\d{2}):*\d*\d*/g;
@@ -45,7 +40,7 @@ const toSeconds = (time) => {
     }
 
     return hours * 3600 + minutes * 60 + seconds; 
-}
+};
 
 const to12Hour = (time) => {
     const format = /([0-9]{2}:[0-9]{2})/g; // HH:MM format
@@ -74,7 +69,7 @@ const to12Hour = (time) => {
     } else {
         return `${time} AM`;
     }
-}
+};
 
 const to24Hour = (time) => {
     if (parseInt(time.slice(0, 1)) < 10 && time.slice(1,2) === ":") {
@@ -90,33 +85,112 @@ const to24Hour = (time) => {
     } else if (time.slice(9, 11) === "PM") {
       return `${parseInt(time.slice(0, 2)) + 12}${time.slice(2, 8)}`;
     }
-}
+};
 
 const success = (pos) => {
     const coordinates = pos.coords;
     localStorage.setItem("Latitude", coordinates.latitude);
     localStorage.setItem("Longitude", coordinates.longitude);
-}
+};
   
 const error = (err) => {
     console.warn(`ERROR(${err.code}): ${err.message}`);
-}
+};
 
 ////////////////////////////////////////////////////////////////////////////
 ////////////             END OF HELPER FUNCTIONS             //////////////
 //////////////////////////////////////////////////////////////////////////
 const timing = ["Fajr", "Sunrise", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
-const toggleSettings = () => {
-    document.querySelector(".setting").classList.toggle("hidden");
-    document.querySelector("#widget").classList.toggle("darken");
-    document.querySelector("section").classList.toggle("darken-bg");
+let Fajr = 0;
+let Sunrise = 0;
+let Dhuhr = 0;
+let Asr = 0;
+let Maghrib = 0;
+let Isha = 0;
+let Imsak = 0;
+let Sunset = 0;
+let Midnight = 0;
+let tune;
+
+const timingOffset = [Fajr, Sunrise, Dhuhr, Asr, Maghrib, Isha];
+
+const getTune = (prayerID) => {
+    let offset = document.getElementById(prayerID).value;
+
+    if (offset.length !== 0 && !isNaN(parseInt(offset))) {
+        return parseInt(offset);
+    }
 }
 
-const getTime = async (date) => {
+const setTune = () => {
+    for (let i = 0; i < 6; i++) {
+        if (localStorage.getItem(`tune${timing[i]}`)) {
+            timingOffset[i] = localStorage.getItem(`tune${timing[i]}`);
+        }
+    }
 
-    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${localStorage.getItem("Latitude")}&longitude=${localStorage.getItem("Longitude")}&method=4`;
-    console.log(url);
+    tune = `${Imsak},${timingOffset[0]},${timingOffset[1]},${timingOffset[2]},${timingOffset[3]},${timingOffset[4]},${Sunset},${timingOffset[5]},${Midnight}`;
+}
+
+const reload = () => {
+    today = initApp();
+    x = 0;
+}
+
+const toggleSettings = () => {
+    document.querySelector(".setting").classList.toggle("settings-open");
+    document.querySelector("#widget").classList.toggle("darken-bg");
+};
+
+const errorMessage = (color, message) => {
+    document.querySelector("#audioCredit").style.display = "none";
+    document.querySelector("#errorMessage").style.color = `var(--error-${color})`;
+    document.querySelector("#errorMessage").innerText = message;
+};
+
+const changeTuneText = () => {
+    let button = document.querySelector(".tune");
+    if (button.innerText === "Set Timing Offsets") {
+        button.innerHTML = '<img src="images/tune-icon.svg" alt="tune icon" width="16" height="16">Close Timing Offsets';
+    } else {
+        button.innerHTML = '<img src="images/tune-icon.svg" alt="tune icon" width="16" height="16">Set Timing Offsets';
+    }
+};
+
+const reverseLocation = () => {
+    const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?lat=${localStorage.getItem("Latitude")}&lon=${localStorage.getItem("Longitude")}&format=json`;
+
+        fetch(reverseGeocodeUrl)
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById("currentLocation").innerHTML = "Device Location";
+                } else {
+                    localStorage.setItem("Location", data.display_name);
+                    document.getElementById("currentLocation").innerHTML = data.display_name;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching suggestions:', error);
+                document.getElementById("currentLocation").innerHTML = "Cannot detect location!";
+                document.getElementById("currentLocation").style.color = "var(--error-red)";
+                
+            })
+
+        document.getElementById("currentLocation").innerHTML = "Device Location";
+};
+
+setTune();
+
+const getTime = async (date) => {
+    let method = 4;
+
+    if (localStorage.getItem("method")) {
+        method = localStorage.getItem("method");
+    }
+
+    const url = `https://api.aladhan.com/v1/timings/${date}?latitude=${localStorage.getItem("Latitude")}&longitude=${localStorage.getItem("Longitude")}&method=${method}&tune=${tune}`;
 
     if (localStorage.getItem("Latitude") && localStorage.getItem("Longitude")) {
         try {
@@ -141,31 +215,25 @@ const getTime = async (date) => {
         } catch (error) {
             console.error(error);
             console.error("Fetch error!");
-
-            document.querySelector("#errorMessage").style.color = "var(--error-red)";
-            document.querySelector("#errorMessage").innerHTML = "Could not fetch prayer times. :(";
+            errorMessage("red", "Could not fetch prayer times. :(");
         }
     }
-}
+};
 
 const newDay = (date) => {
     const tomorrow = new Date();
 
     if (date !== tomorrow.toLocaleDateString()) {
-        today = initApp();
-        x = 0;
+        reload();
         playAudio = false;
         console.log("New Day Loaded");
     }
-}
+};
 
 if (!localStorage.getItem("Latitude") && !localStorage.getItem("Longitude")) {
     toggleSettings();
-
     navigator.geolocation.getCurrentPosition(success, error); // get device location
-
-    document.querySelector("#errorMessage").style.color = "var(--error-red)";
-    document.querySelector("#errorMessage").innerHTML = "Set your location or refresh to load device location.";
+    errorMessage("red", "Set your location or refresh to load device location.");
 }
 
 const initApp = () => {
@@ -177,18 +245,42 @@ const initApp = () => {
         if (Prayer) {
             for (let i = 0; i <= 5; i++) {
                 document.querySelector(`#${timing[i]}`).innerHTML = to12Hour(Prayer[timing[i]]);
+                document.querySelector(`#${timing[i]}`).setAttribute("datetime", Prayer[timing[i]]);
             }
             document.querySelector("#hijri").innerHTML = Prayer.date;
+            document.querySelector("#hijri").setAttribute("datetime", today.toISOString().slice(0,10));
         }  
     });
 
     return today;
-}
+};
 
 let today = initApp();
 let x = 0;
 let playAudio = false;
+let fajr = false;
 
+document.getElementById("tuneButton").addEventListener("click", (e) => {
+    e.preventDefault();
+    
+    for (let i = 0; i < 6; i++) {
+        const offset = getTune(`tune${timing[i]}`);
+
+        if (offset !== undefined) {
+            localStorage.setItem(`tune${timing[i]}`, offset);
+            timingOffset[i] = offset;
+        }
+    }
+
+    setTune();
+    reload();
+
+    errorMessage("green", "Tune set successfully!");
+    document.querySelector(".tuneForm").classList.toggle("tune-open");
+    changeTuneText();
+    document.querySelector(".setting-blur").classList.toggle("darken-bg");
+    setTimeout(() => toggleSettings(), 250);
+})
 
 
 setInterval(() => {
@@ -204,14 +296,28 @@ setInterval(() => {
     
         document.querySelector("#remaining").innerHTML = timing[x];
         
-        if (remainingSec === 0 && !playAudio) {
+        if (x === 0 && !fajr) {
+            document.querySelector("#audio-alert").setAttribute("src", "azan-fajr.mp3");
+            document.querySelector("#azanLink").setAttribute("href", "https://www.youtube.com/watch?v=7GPPH34Ep74");
+            fajr = true;
+        }
+
+        if (remainingSec === 0 && !playAudio && x !== 1) {
             document.querySelector("#audio-alert").play();
             playAudio = true;
         }
+
+        if (remainingSec === 1 && playAudio) {
+            playAudio = false;
+            console.log(`playAudio = ${playAudio}`);
+        }
+
     
         if (remainingSec > 1800 && x !== 5) {
             x++;
-    
+            fajr = false;
+            document.querySelector("#audio-alert").setAttribute("src", "azan.mp3");
+            document.querySelector("#azanLink").setAttribute("href", "https://www.youtube.com/watch?v=FliFWDRzaxM");
         }
     
     
@@ -232,26 +338,7 @@ document.querySelector("#settings-btn").addEventListener("click", () => {
     if (localStorage.getItem("Location")) {
         document.getElementById("currentLocation").innerHTML = localStorage.getItem("Location");
     } else if (localStorage.getItem("Latitude") && localStorage.getItem("Longitude") && !localStorage.getItem("Location")) {
-        const reverseGeocodeUrl = `https://nominatim.openstreetmap.org/reverse?lat=${localStorage.getItem("Latitude")}&lon=${localStorage.getItem("Longitude")}&format=json`;
-
-        fetch(reverseGeocodeUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    document.getElementById("currentLocation").innerHTML = "Device Location";
-                } else {
-                    localStorage.setItem("Location", data.display_name);
-                    document.getElementById("currentLocation").innerHTML = data.display_name;
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching suggestions:', error);
-                document.getElementById("currentLocation").innerHTML = "Cannot detect location!";
-                document.getElementById("currentLocation").style.color = "var(--error-red)";
-                
-            })
-        
-        document.getElementById("currentLocation").innerHTML = "Device Location";
+       reverseLocation(); 
     }
 });
 
@@ -260,7 +347,7 @@ document.querySelector("#settings-btn").addEventListener("click", () => {
 let lightMode;
 
 if (!localStorage.getItem("lightMode")) {
-    lightMode = false;
+    lightMode = true;
 } else {
     lightMode = JSON.parse(localStorage.getItem("lightMode"));
 }
@@ -316,8 +403,7 @@ document.getElementById('address').addEventListener("input", function() {
     })
     .catch(error => {
         console.error('Error fetching suggestions:', error);
-        document.querySelector("#errorMessage").style.color = "var(--error-red)";
-        document.querySelector("#errorMessage").innerHTML = "Could not fetch location!";
+        errorMessage("red", "Could not fetch location!");
     });
 });
 
@@ -326,6 +412,10 @@ document.getElementById('geocodeForm').addEventListener("submit", function(event
   event.preventDefault();
   
   const address = document.getElementById('address').value;
+
+  if (address.length === 0) {
+    return;
+  }
 
   const geocodeUrl = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(address)}&format=json`;
 
@@ -339,25 +429,19 @@ document.getElementById('geocodeForm').addEventListener("submit", function(event
         localStorage.setItem("Longitude", location.lon);
         localStorage.setItem("Location", location.display_name);
 
-        document.querySelector("#errorMessage").style.color = "var(--error-green)";
-        document.querySelector("#errorMessage").innerHTML = "Location set successfully!";
+        errorMessage("green", "Location set successfully!");
         document.getElementById("currentLocation").innerHTML = localStorage.getItem("Location");
 
-        today = initApp();
-        x = 0;
+        reload();
 
-        setTimeout(() => {
-            toggleSettings();
-        }, 1000);
+        setTimeout(() => toggleSettings(), 250);
       } else {
-        document.querySelector("#errorMessage").style.color = "var(--error-red)";
-        document.querySelector("#errorMessage").innerHTML = "Location not found!";
+        errorMessage("red", "Location not found!");
       }
     })
     .catch(error => {
         console.error('Error fetching suggestions:', error);
-        document.querySelector("#errorMessage").style.color = "var(--error-red)";
-        document.querySelector("#errorMessage").innerHTML = "Could not set location!";
+        errorMessage("red", "Could not set location!");
     });
 });
 
@@ -370,13 +454,45 @@ const zoom = () => {
         console.log("scale set!");
         toggleSettings();
     }
-}
+};
+
+const method = () => {
+    const methodOption = document.querySelector("#method").value;
+
+    if (!isNaN(parseInt(methodOption)) && parseInt(methodOption) >= 0 && parseInt(methodOption) < 24) {
+        localStorage.setItem("method", methodOption);
+        errorMessage("green", "Calculation method set successfully!");
+        reload();
+        setTimeout(() => toggleSettings(), 250);
+    }
+};
 
 document.querySelector("#setZoom").onclick = (e) => {
     e.preventDefault();
     zoom();
 }
 
+document.querySelector("#setMethod").onclick = (e) => {
+    e.preventDefault();
+    method(); 
+}
+
 if (localStorage.getItem("scale")) {
     document.querySelector(":root").style.setProperty("--scale", localStorage.getItem("scale"));
+}
+
+document.querySelector(".tune").onclick = (e) => {
+    e.preventDefault();
+    document.querySelector(".tuneForm").classList.toggle("tune-open");
+    document.querySelector(".setting-blur").classList.toggle("darken-bg");
+    changeTuneText();  
+}
+
+document.querySelector("#location-btn").onclick = (e) => {
+    e.preventDefault();
+    navigator.geolocation.getCurrentPosition(success, error);
+    errorMessage("green", "Location set successfully!");
+    reverseLocation();
+    reload();
+    setTimeout(() => toggleSettings(), 500);
 }
