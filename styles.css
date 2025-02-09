@@ -469,6 +469,7 @@ input::placeholder, textarea::placeholder {
 /* || CONTACT */
 .contact-main {
     min-height: 91vh;
+    width: 100%;
 }
 
 .contact__h1 {
